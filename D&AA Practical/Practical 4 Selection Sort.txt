@@ -1,0 +1,62 @@
+ALGORITHM:
+SELECTION-SORT(A, n)
+    comparisons ← 0
+
+    for i ← 0 to n-2 do
+        minIndex ← i
+        for j ← i+1 to n-1 do
+            comparisons ← comparisons + 1
+            if A[j] < A[minIndex] then
+                minIndex ← j
+            end if
+        end for
+        
+        // Swap
+        temp ← A[i]
+        A[i] ← A[minIndex]
+        A[minIndex] ← temp
+    end for
+    
+    return A, comparisons
+
+
+
+PROGRAM CODE
+
+//SELECTION SORT
+#include <stdio.h>
+
+int main() {
+    int n, i, j, minIndex, temp;
+    long long comparisons = 0;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    printf("Enter elements: ");
+    for(i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+    
+    // Selection Sort
+    for(i = 0; i < n-1; i++) {
+        minIndex = i;
+        for(j = i+1; j < n; j++) {
+            comparisons++;  // Count comparison
+            if(arr[j] < arr[minIndex])
+                minIndex = j;
+        }
+        // Swap
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+    
+    // Output
+    printf("Sorted: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    
+    printf("\nComparisons: %lld\n", comparisons);
+    return 0;
+}

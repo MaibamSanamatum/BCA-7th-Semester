@@ -1,0 +1,79 @@
+ALGORITHM:
+BINARY-SEARCH(arr, low, high, key)
+    comparisons ← 0
+    
+    while low ≤ high do
+        comparisons ← comparisons + 1    // while condition check
+        
+        mid ← low + (high - low) / 2
+        
+        comparisons ← comparisons + 1     // arr[mid] comparison
+        if arr[mid] == key then
+            return mid
+        else if arr[mid] < key then
+            low ← mid + 1
+        else
+            high ← mid - 1
+        end if
+    end while
+    
+    return -1  // not found
+
+
+
+PROGRAM CODE:
+
+//BINARY SEARCH
+#include <stdio.h>
+
+int comparisons = 0;  // global counter
+
+// Binary Search function (counts comparisons)
+int binarySearch(int arr[], int low, int high, int key) {
+    while (low <= high) {
+        comparisons++;  // count mid calculation comparison
+        
+        int mid = low + (high - low) / 2;
+        
+        comparisons++;  // count key vs arr[mid] comparison
+        
+        if (arr[mid] == key) {
+            return mid;
+        }
+        else if (arr[mid] < key) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+    return -1;  // not found
+}
+
+int main() {
+    int n, key;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    printf("Enter %d sorted elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter key to search: ");
+    scanf("%d", &key);
+    
+    int result = binarySearch(arr, 0, n-1, key);
+    
+    if (result != -1) {
+        printf("Element found at index %d\n", result);
+    } else {
+        printf("Element not found\n");
+    }
+    
+    printf("Total comparisons: %d\n", comparisons);
+    
+    return 0;
+}
